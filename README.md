@@ -13,13 +13,17 @@ A JavaScript bookmarklet designed to isolate and highlight a specific element on
     ```JavaScript
     javascript:(function(){var e=document.body;let n=document.head.appendChild(document.createElement("style"));n.textContent=".mainonly { outline: 2px solid red; }";let t=CSS.supports("selector(:has(*))");function o(n){n instanceof HTMLElement&&(e.classList.remove("mainonly"),(e=n).classList.add("mainonly"))}function i(e){o(e.target)}function l(o){if(o.preventDefault(),t)n.textContent=":not(:has(.mainonly), .mainonly, .mainonly *) { visibility: hidden; }";else{n.textContent=":not(.mainonly *, .mainonly-ancestor) { visibility: hidden; }";var i=e;do i.classList.add("mainonly-ancestor");while(i=i.parentElement)}r()}function s(o){if("Escape"===o.key){o.preventDefault();var i=window.scrollY||document.documentElement.scrollTop;if(n.remove(),document.removeEventListener("keydown",s),r(),e?.classList.remove("mainonly"),!t)for(let l of document.getElementsByClassName("mainonly-ancestor"))l.classList.remove("mainonly-ancestor");window.scrollTo(0,i)}}function a(n){n.preventDefault(),n.deltaY<0?o(e.parentElement):o(e.firstElementChild)}function r(){document.removeEventListener("mouseover",i),document.removeEventListener("click",l),document.removeEventListener("wheel",a)}document.addEventListener("mouseover",i),document.addEventListener("click",l),document.addEventListener("wheel",a,{passive:!1}),document.addEventListener("keydown",s)}())
     ```
+    blurring effect
+   ```JavaScript
+   javascript:(function(){var e=document.body;let n=document.head.appendChild(document.createElement("style"));n.textContent=".mainonly { outline: 2px solid red; }";let t=CSS.supports("selector(:has(*))");function o(n){n instanceof HTMLElement&&(e.classList.remove("mainonly"),(e=n).classList.add("mainonly"))}function i(e){o(e.target)}function l(o){if(o.preventDefault(),t)n.textContent=":not(:has(.mainonly), .mainonly, .mainonly *) { filter: blur(3px); }";else{n.textContent=":not(.mainonly *, .mainonly-ancestor) { visibility: hidden; }";var i=e;do i.classList.add("mainonly-ancestor");while(i=i.parentElement)}r()}function s(o){if("Escape"===o.key){o.preventDefault();var i=window.scrollY||document.documentElement.scrollTop;if(n.remove(),document.removeEventListener("keydown",s),r(),e?.classList.remove("mainonly"),!t)for(let l of document.getElementsByClassName("mainonly-ancestor"))l.classList.remove("mainonly-ancestor");window.scrollTo(0,i)}}function a(n){n.preventDefault(),n.deltaY<0?o(e.parentElement):o(e.firstElementChild)}function r(){document.removeEventListener("mouseover",i),document.removeEventListener("click",l),document.removeEventListener("wheel",a)}document.addEventListener("mouseover",i),document.addEventListener("click",l),document.addEventListener("wheel",a,{passive:!1}),document.addEventListener("keydown",s)}())
+   ```
 
-2. Right-click on your browser's bookmark bar and select "Add Bookmark".
-3. In the pop-up window, name your bookmark (for example, "mainonly") and paste the copied code into the URL or location field.
-4. Save the bookmark.
-5. On a webpage, activate the bookmarklet, then click on the element you want to focus on. This element will be encircled with a red outline. Use the scroll wheel to adjust the selection size.
-6. Once you've made a selection, click the left mouse button. All other elements will be hidden, leaving only the selected element visible.
-7. Press the `ESC` key to reveal the hidden elements and revert the page to its original state.
+3. Right-click on your browser's bookmark bar and select "Add Bookmark".
+4. In the pop-up window, name your bookmark (for example, "mainonly") and paste the copied code into the URL or location field.
+5. Save the bookmark.
+6. On a webpage, activate the bookmarklet, then click on the element you want to focus on. This element will be encircled with a red outline. Use the scroll wheel to adjust the selection size.
+7. Once you've made a selection, click the left mouse button. All other elements will be hidden, leaving only the selected element visible.
+8. Press the `ESC` key to reveal the hidden elements and revert the page to its original state.
 
 ## Tools
 
